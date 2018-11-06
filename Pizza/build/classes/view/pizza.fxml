@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.PizzaController"
+      alignment="center" spacing="10" 
+      styleClass="root"
+>
+    <stylesheets>
+        <URL value="@style.css"/>
+    </stylesheets>
+    <HBox spacing="10" alignment="CENTER" styleClass="header">
+        <GridPane>
+            <Text styleClass="heading" text="Create pizza" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <ImageView GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <image>
+                    <Image url="@pizzeria.png"/>
+                </image>
+            </ImageView>
+        </GridPane>
+    </HBox>
+    
+    <VBox spacing="10" alignment="CENTER" styleClass="body">
+        <padding>
+            <Insets bottom="50.0" left="10.0" right ="10.0" top="10.0"/>
+        </padding>
+        <HBox>
+            <GridPane alignment="center" hgap="10" vgap="10">
+                <Text fx:id="availableTxt" styleClass="big" text="Available" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <ListView fx:id="ingredientsLv" items="${controller.pizza.kitchen.ingredients}" prefWidth="200" prefHeight="250" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            </GridPane>
+
+            <VBox spacing="10" alignment="CENTER" >
+            <padding>
+            <Insets bottom="10.0" left="10.0" right ="10.0" top="10.0"/>
+            </padding>
+                <Button fx:id="addIngredientBtn" styleClass="button" disable="true" text="->" onAction="#handleAdd" />
+                <Button fx:id="removeIngredientBtn" styleClass="button" disable="true" text="&lt;-" onAction="#handleRemove" />
+            </VBox>
+        
+            <GridPane alignment="center" hgap="10" vgap="10">    
+                <Text fx:id="selectedTxt" styleClass="big" text="Selected" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <ListView fx:id="selectedIngredientsLv" items="${controller.pizza.ingredients}" prefWidth="200" prefHeight="250" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <placeholder>
+                        <Label text="No ingredients on pizza"/>
+                    </placeholder>
+                </ListView>
+            </GridPane>
+        </HBox>
+
+        <HBox>
+            <Label styleClass="Label" text="Price: " />
+            <Text fx:id="priceTxt"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER" >
+            <Text fx:id="message"/>
+        </HBox>        
+
+    </VBox>
+    
+    
+    <HBox spacing="10" alignment="CENTER" styleClass="footer">
+        <padding>
+            <Insets bottom="10.0" left="10.0" right ="10.0" top="10.0"/>
+        </padding>
+        <Button fx:id="cancelBtn" styleClass="button" text="Cancel" onAction="#handleCancel" />
+        <Button fx:id="createBtn" styleClass="button" text="Create" onAction="#handleCreate"/>
+    </HBox>
+    
+</VBox>
